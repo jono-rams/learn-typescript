@@ -21,11 +21,12 @@ class Pizza {
         this.base = b;
     }
 }
-const pizza = new Pizza('mario special', 15);
-pizza.addTopping('mushrooms');
-pizza.addTopping('olives');
-// pizza.selectBase('crispy');
-pizza.selectBase('garlic');
-pizza.removeTopping('olives');
-// pizza.title = 'luigi special';
-console.log(pizza);
+const pizzaOne = new Pizza('mario special', 15);
+const pizzaTwo = new Pizza('luigi special', 10);
+function addMushroomsToPizzas(pizzas) {
+    pizzas.forEach(pizza => {
+        pizza.addTopping('mushrooms');
+    });
+}
+addMushroomsToPizzas([pizzaOne, pizzaTwo]);
+console.log(pizzaOne, pizzaTwo);

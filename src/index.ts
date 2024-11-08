@@ -24,14 +24,16 @@ class Pizza {
   }
 }
 
-const pizza = new Pizza('mario special', 15);
-pizza.addTopping('mushrooms');
-pizza.addTopping('olives');
-// pizza.selectBase('crispy');
-pizza.selectBase('garlic');
-pizza.removeTopping('olives');
+const pizzaOne: Pizza = new Pizza('mario special', 15);
+const pizzaTwo = new Pizza('luigi special', 10);
 
-// pizza.title = 'luigi special';
+function addMushroomsToPizzas(pizzas: Pizza[]): void {
+  pizzas.forEach(pizza => {
+    pizza.addTopping('mushrooms');
+  });
+}
 
-console.log(pizza);
+addMushroomsToPizzas([pizzaOne, pizzaTwo]);
+
+console.log(pizzaOne, pizzaTwo);
 
