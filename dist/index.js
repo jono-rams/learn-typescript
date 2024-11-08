@@ -1,20 +1,26 @@
 "use strict";
-// extending type aliases
-const personOne = {
-    id: 1,
-    firstName: 'mario'
-};
-const personTwo = {
-    id: 2,
-    firstName: 'luigi',
-    email: 'luigi@gmail.com'
-};
-const personThree = {
-    email: 'peach@gmail.com'
-};
-function printUser(user) {
-    console.log(user.id, user.email, user.firstName);
+// classes 101
+class Pizza {
+    constructor(title, price) {
+        this.base = 'classic';
+        this.toppings = [];
+        this.title = title;
+        this.price = price;
+    }
+    addTopping(topping) {
+        this.toppings.push(topping);
+    }
+    removeTopping(topping) {
+        this.toppings = this.toppings.filter(t => t !== topping);
+    }
+    selectBase(b) {
+        this.base = b;
+    }
 }
-// printUser(personOne);
-printUser(personTwo);
-// printUser(personThree);
+const pizza = new Pizza('mario special', 15);
+pizza.addTopping('mushrooms');
+pizza.addTopping('olives');
+// pizza.selectBase('crispy');
+pizza.selectBase('garlic');
+pizza.removeTopping('olives');
+console.log(pizza);
