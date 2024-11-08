@@ -614,8 +614,22 @@ class DataResource {
         const response = await fetch(`${this.endpoint}/${id}`);
         return response.json();
     }
-    async delete(id) {}
-    async save(data) {}
+    async delete(id) {
+        const response = await fetch(`${this.endpoint}/${id}`, {
+            method: "DELETE"
+        });
+        return response;
+    }
+    async save(data) {
+        const response = await fetch(this.endpoint, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return response;
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {

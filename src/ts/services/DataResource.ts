@@ -11,6 +11,22 @@ export class DataResource<T> {
 
     return response.json();
   }
-  async delete(id: number) {}
-  async save(data: T) {}
+  async delete(id: number) {
+    const response = await fetch(`${this.endpoint}/${id}`, {
+      method: "DELETE"
+    });
+
+    return response;
+  }
+  async save(data: T) {
+    const response = await fetch(this.endpoint, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    return response;
+  }
 }
