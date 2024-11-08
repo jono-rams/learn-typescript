@@ -1,30 +1,27 @@
 "use strict";
-// Generic Constraints
-class DataCollection {
-    constructor(data) {
-        this.data = data;
+//--------------------
+// CSV Writer Project
+//--------------------
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CSVWriter = void 0;
+const fs_1 = require("fs");
+class CSVWriter {
+    constructor(columns) {
+        this.columns = columns;
+        this.csv = this.columns.join(',') + '\n';
     }
-    loadOne() {
-        const randomIndex = Math.floor(Math.random() * this.data.length);
-        return this.data[randomIndex];
+    save(filename) {
+        (0, fs_1.appendFileSync)(filename, this.csv);
+        this.csv = '\n';
+        console.log('file saved to', filename);
     }
-    loadAll() {
-        return this.data;
+    addRows(values) {
+        let rows = values.map(v => this.formatRow(v));
+        this.csv += rows.join('\n');
+        console.log(this.csv);
     }
-    add(item) {
-        this.data.push(item);
-        return this.data;
-    }
-    deleteOne(id) {
-        this.data = this.data.filter((item) => item.id !== id);
+    formatRow(value) {
+        return this.columns.map((col) => value[col]).join(',');
     }
 }
-const userCollection = new DataCollection([
-    { name: "John", score: 100, id: 1 },
-    { name: "Jane", score: 200, id: 2 },
-]);
-console.log(userCollection.loadOne());
-console.log(userCollection.loadAll());
-console.log(userCollection.add({ name: "Jim", score: 300, id: 3 }));
-userCollection.deleteOne(2);
-console.log(userCollection.loadAll());
+exports.CSVWriter = CSVWriter;
