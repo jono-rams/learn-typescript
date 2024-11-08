@@ -1,28 +1,27 @@
 "use strict";
-// function signatures
-function add(a, b) {
-    return a + b;
-}
-function multiply(first, second) {
-    return first * second;
-}
-function square(num) {
-    return num * num;
-}
-function joinTwoNumbers(first, second) {
-    return `${first}${second}`;
-}
-let calcs = [];
-calcs.push(add);
-calcs.push(multiply);
-calcs.push(square);
-const shapeOne = {
-    name: 'square',
-    calcArea: (length) => length * length
+// extending interfaces
+const user = {
+    id: 1,
+    format() {
+        return `This user has an id of ${this.id}`;
+    }
 };
-const shapeTwo = {
-    name: 'circle',
-    calcArea: (radius) => Math.PI * radius ^ 2
+const bill = {
+    id: 2,
+    amount: 50,
+    server: 'mario',
+    format() {
+        return `Bill with id ${this.id} has ${this.amount} to pay`;
+    }
 };
-console.log(shapeOne.calcArea(10));
-console.log(shapeTwo.calcArea(10));
+function printFormatted(item) {
+    console.log(item.format());
+}
+function printBill(bill) {
+    console.log('server:', bill.server);
+    console.log(bill.format());
+}
+printFormatted(user);
+printFormatted(bill);
+// printBill(user);
+printBill(bill);

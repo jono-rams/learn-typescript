@@ -1,43 +1,41 @@
-// function signatures
+// extending interfaces
 
-type Calculator = (numOne: number, numTwo: number) => number;
-
-function add(a: number, b: number) {
-  return a + b;
-}
-function multiply(first: number, second: number) {
-  return first * second;
-}
-function square(num: number) {
-  return num * num;
-}
-function joinTwoNumbers(first: number, second: number) {
-  return `${first}${second}`;
+interface HasFormatter {
+  format(): string
 }
 
-let calcs: Calculator[] = [];
-
-calcs.push(add);
-calcs.push(multiply);
-calcs.push(square);
-// calcs.push(joinTwoNumbers);
-
-// function signatures on interfaces
-interface HasArea {
-  name: string
-  // calcArea: (a: number) => number
-  calcArea(a: number): number
+interface Bill extends HasFormatter {
+  id: string | number
+  amount: number
+  server: string
 }
 
-const shapeOne: HasArea = {
-  name: 'square',
-  calcArea: (length: number) => length * length
+const user = {
+  id: 1,
+  format(): string {
+    return `This user has an id of ${this.id}`;
+  }
 }
 
-const shapeTwo: HasArea = {
-  name: 'circle',
-  calcArea: (radius: number) => Math.PI * radius^2
+const bill = {
+  id: 2,
+  amount: 50,
+  server: 'mario',
+  format(): string {
+    return `Bill with id ${this.id} has ${this.amount} to pay`;
+  }
 }
 
-console.log(shapeOne.calcArea(10));
-console.log(shapeTwo.calcArea(10));
+function printFormatted(item: HasFormatter): void {
+  console.log(item.format());
+}
+
+function printBill(bill: Bill): void {
+  console.log('server:', bill.server);
+  console.log(bill.format());
+}
+
+printFormatted(user);
+printFormatted(bill);
+// printBill(user);
+printBill(bill);
