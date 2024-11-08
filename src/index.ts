@@ -1,48 +1,28 @@
-//--------------------
-// CSV Writer Project
-//--------------------
+// Generics
 
-import { appendFileSync } from 'fs';
-
-interface Payment {
-  id: number;
-  amount: number;
-  to: string;
-  notes: string;
+function logAndReturnValue<T>(arg: T): T {
+  console.log(arg);
+  return arg;
 }
 
-type PaymentColumns = ('id' | 'amount' | 'to' | 'notes')[];
+logAndReturnValue<string>("Hello, world!");
+logAndReturnValue<number>(123);
 
-class CSVWriter {
-  constructor(private columns: PaymentColumns) {
-    this.csv = this.columns.join(',') + '\n';
-  }
-
-  save(filename: string): void {
-    appendFileSync(filename, this.csv);
-    this.csv = '\n';
-
-    console.log('file saved to', filename);
-  }
-
-  addRows(values: Payment[]): void {
-    let rows = values.map(v => this.formatRow(v));
-    this.csv += rows.join('\n');
-    console.log(this.csv);
-  }
-
-  private formatRow(p: Payment): string {
-    return this.columns.map(col => p[col]).join(',');
-  }
-
-  private csv: string;
+function getRandomArrayElement<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const writer = new CSVWriter(['id', 'amount', 'to', 'notes']);
+interface User {
+  name: string;
+  score: number;
+}
 
-writer.addRows([
-  { id: 1, amount: 100, to: 'mario', notes: 'design work' },
-  { id: 2, amount: 200, to: 'luigi', notes: 'development work' },
-]);
+const users: User[] = [
+  { name: "John", score: 100 },
+  { name: "Jane", score: 95 },
+  { name: "Jim", score: 90 },
+  { name: "Jill", score: 85 },
+];
 
-writer.save('./data/payments.csv');
+const randomUser = getRandomArrayElement(users);
+console.log(randomUser.score);
