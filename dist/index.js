@@ -1,50 +1,31 @@
 "use strict";
-// classes 101
-class MenuItem {
-    constructor(title, price) {
-        this.title = title;
-        this.price = price;
+//--------------------
+// CSV Writer Project
+//--------------------
+Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = require("fs");
+class CSVWriter {
+    constructor(columns) {
+        this.columns = columns;
+        this.csv = this.columns.join(',') + '\n';
     }
-    get details() {
-        return `${this.title} costs $${this.price}`;
+    save(filename) {
+        (0, fs_1.appendFileSync)(filename, this.csv);
+        this.csv = '\n';
+        console.log('file saved to', filename);
     }
-}
-class Pizza extends MenuItem {
-    constructor(title, price) {
-        super(title, price);
-        this.base = 'classic';
-        this.toppings = [];
+    addRows(values) {
+        let rows = values.map(v => this.formatRow(v));
+        this.csv += rows.join('\n');
+        console.log(this.csv);
     }
-    addTopping(topping) {
-        this.toppings.push(topping);
-    }
-    removeTopping(topping) {
-        this.toppings = this.toppings.filter(t => t !== topping);
-    }
-    selectBase(b) {
-        this.base = b;
-    }
-    format() {
-        let formatted = this.details + '\n';
-        // base
-        formatted += `Pizza on a ${this.base} base with `;
-        // toppings
-        if (this.toppings.length < 1) {
-            formatted += 'no toppings';
-        }
-        else {
-            formatted += `toppings: ${this.toppings.join(', ')}`;
-        }
-        return formatted;
+    formatRow(p) {
+        return this.columns.map(col => p[col]).join(',');
     }
 }
-const pizzaOne = new Pizza('mario special', 15);
-pizzaOne.addTopping('mushrooms');
-function printMenuItem(item) {
-    console.log(item.details);
-}
-function printFormatted(val) {
-    console.log(val.format());
-}
-printMenuItem(pizzaOne);
-printFormatted(pizzaOne);
+const writer = new CSVWriter(['id', 'amount', 'to', 'notes']);
+writer.addRows([
+    { id: 1, amount: 100, to: 'mario', notes: 'design work' },
+    { id: 2, amount: 200, to: 'luigi', notes: 'development work' },
+]);
+writer.save('./data/payments.csv');
