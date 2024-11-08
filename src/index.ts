@@ -1,28 +1,23 @@
-// Generics
+// Intersection Type
 
-function logAndReturnValue<T>(arg: T): T {
-  console.log(arg);
-  return arg;
+interface HasID {
+  id: number;
 }
 
-logAndReturnValue<string>("Hello, world!");
-logAndReturnValue<number>(123);
+function addIdToValue<T>(val: T): T & HasID {
+  const id = Math.random();
 
-function getRandomArrayElement<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
+  return { ...val, id };
 }
 
-interface User {
-  name: string;
-  score: number;
+interface Post{
+  title: string;
+  thumbsUp: number;
 }
 
-const users: User[] = [
-  { name: "John", score: 100 },
-  { name: "Jane", score: 95 },
-  { name: "Jim", score: 90 },
-  { name: "Jill", score: 85 },
-];
+const post = addIdToValue<Post>({
+  title: "Marmite sucks",
+  thumbsUp: 250,
+});
 
-const randomUser = getRandomArrayElement(users);
-console.log(randomUser.score);
+console.log(post.id, post.title, post.thumbsUp);

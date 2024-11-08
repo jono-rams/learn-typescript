@@ -1,19 +1,11 @@
 "use strict";
-// Generics
-function logAndReturnValue(arg) {
-    console.log(arg);
-    return arg;
+// Intersection Type
+function addIdToValue(val) {
+    const id = Math.random();
+    return Object.assign(Object.assign({}, val), { id });
 }
-logAndReturnValue("Hello, world!");
-logAndReturnValue(123);
-function getRandomArrayElement(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-}
-const users = [
-    { name: "John", score: 100 },
-    { name: "Jane", score: 95 },
-    { name: "Jim", score: 90 },
-    { name: "Jill", score: 85 },
-];
-const randomUser = getRandomArrayElement(users);
-console.log(randomUser.score);
+const post = addIdToValue({
+    title: "Marmite sucks",
+    thumbsUp: 250,
+});
+console.log(post.id, post.title, post.thumbsUp);
