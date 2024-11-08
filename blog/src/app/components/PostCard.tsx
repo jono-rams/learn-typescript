@@ -1,13 +1,18 @@
-interface PostCardProps {
+interface Post {
+  id: number;
   title: string;
-  author: string;
+  body: string;
 }
 
-export default function PostCard({ title, author }: PostCardProps) {
+interface PostCardProps {
+  post: Post;
+}
+
+export default function PostCard({ post }: PostCardProps) {
   return (
     <div className="card">
-      <h2>{title}</h2>
-      <p>Written by {author}</p>
+      <h2>{post.title}</h2>
+      <p>{post.body}</p>
     </div>
   );
 }
