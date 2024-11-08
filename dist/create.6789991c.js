@@ -584,6 +584,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"4WE0n":[function(require,module,exports) {
+const titleInput = document.querySelector('input[name="title"]');
+const descriptionInput = document.querySelector("textarea");
+const form = document.querySelector(".create");
+form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+});
 
 },{}]},["wXxF1","4WE0n"], "4WE0n", "parcelRequireb76b")
 
