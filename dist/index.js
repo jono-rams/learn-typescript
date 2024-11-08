@@ -1,27 +1,20 @@
 "use strict";
-// extending interfaces
-const user = {
+// extending type aliases
+const personOne = {
     id: 1,
-    format() {
-        return `This user has an id of ${this.id}`;
-    }
+    firstName: 'mario'
 };
-const bill = {
+const personTwo = {
     id: 2,
-    amount: 50,
-    server: 'mario',
-    format() {
-        return `Bill with id ${this.id} has ${this.amount} to pay`;
-    }
+    firstName: 'luigi',
+    email: 'luigi@gmail.com'
 };
-function printFormatted(item) {
-    console.log(item.format());
+const personThree = {
+    email: 'peach@gmail.com'
+};
+function printUser(user) {
+    console.log(user.id, user.email, user.firstName);
 }
-function printBill(bill) {
-    console.log('server:', bill.server);
-    console.log(bill.format());
-}
-printFormatted(user);
-printFormatted(bill);
-// printBill(user);
-printBill(bill);
+// printUser(personOne);
+printUser(personTwo);
+// printUser(personThree);
