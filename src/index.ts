@@ -6,16 +6,14 @@ interface HasFormatter {
   format(): string;
 }
 
-class MenuItem implements HasFormatter {
+abstract class MenuItem implements HasFormatter {
   constructor(private title: string, private price: number) {}
 
   get details(): string {
     return `${this.title} costs $${this.price}`;
   }
 
-  format(): string {
-    return `This menu item is called ${this.title} and costs $${this.price}`;
-  }
+  abstract format(): string;
 }
 
 class Pizza extends MenuItem {
@@ -35,9 +33,27 @@ class Pizza extends MenuItem {
   selectBase(b: Base): void {
     this.base = b;
   }
+
+  format(): string {
+    let formatted = this.details + '\n';
+    
+    // base
+    formatted += `Pizza on a ${this.base} base with `;
+
+    // toppings
+    if (this.toppings.length < 1) {
+      formatted += 'no toppings';
+    } else {
+      formatted += `toppings: ${this.toppings.join(', ')}`;
+    }
+
+    return formatted;
+  }
 }
 
 const pizzaOne: Pizza = new Pizza('mario special', 15);
+pizzaOne.addTopping('mushrooms');
+
 
 function printMenuItem(item: MenuItem): void {
   console.log(item.details);

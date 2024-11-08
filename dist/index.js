@@ -8,9 +8,6 @@ class MenuItem {
     get details() {
         return `${this.title} costs $${this.price}`;
     }
-    format() {
-        return `This menu item is called ${this.title} and costs $${this.price}`;
-    }
 }
 class Pizza extends MenuItem {
     constructor(title, price) {
@@ -27,8 +24,22 @@ class Pizza extends MenuItem {
     selectBase(b) {
         this.base = b;
     }
+    format() {
+        let formatted = this.details + '\n';
+        // base
+        formatted += `Pizza on a ${this.base} base with `;
+        // toppings
+        if (this.toppings.length < 1) {
+            formatted += 'no toppings';
+        }
+        else {
+            formatted += `toppings: ${this.toppings.join(', ')}`;
+        }
+        return formatted;
+    }
 }
 const pizzaOne = new Pizza('mario special', 15);
+pizzaOne.addTopping('mushrooms');
 function printMenuItem(item) {
     console.log(item.details);
 }
