@@ -1,5 +1,5 @@
 "use strict";
-// Generic Classes
+// Generic Constraints
 class DataCollection {
     constructor(data) {
         this.data = data;
@@ -15,11 +15,16 @@ class DataCollection {
         this.data.push(item);
         return this.data;
     }
+    deleteOne(id) {
+        this.data = this.data.filter((item) => item.id !== id);
+    }
 }
 const userCollection = new DataCollection([
-    { name: "John", score: 100 },
-    { name: "Jane", score: 200 },
+    { name: "John", score: 100, id: 1 },
+    { name: "Jane", score: 200, id: 2 },
 ]);
 console.log(userCollection.loadOne());
 console.log(userCollection.loadAll());
-console.log(userCollection.add({ name: "Jim", score: 300 }));
+console.log(userCollection.add({ name: "Jim", score: 300, id: 3 }));
+userCollection.deleteOne(2);
+console.log(userCollection.loadAll());
