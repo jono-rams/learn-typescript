@@ -1,17 +1,25 @@
 "use strict";
-// Generic Interfaces
-const collectionOne = {
-    data: ["a", "b", "c"],
-    name: "string collection",
-};
-const collectionTwo = {
-    data: [1, 2, 3],
-    name: "number collection",
-};
-function randomCollectionItem(c) {
-    const randomIndex = Math.floor(Math.random() * c.data.length);
-    return c.data[randomIndex];
+// Generic Classes
+class DataCollection {
+    constructor(data) {
+        this.data = data;
+    }
+    loadOne() {
+        const randomIndex = Math.floor(Math.random() * this.data.length);
+        return this.data[randomIndex];
+    }
+    loadAll() {
+        return this.data;
+    }
+    add(item) {
+        this.data.push(item);
+        return this.data;
+    }
 }
-const resultOne = randomCollectionItem(collectionOne);
-const resultTwo = randomCollectionItem(collectionTwo);
-console.log(resultOne, resultTwo);
+const userCollection = new DataCollection([
+    { name: "John", score: 100 },
+    { name: "Jane", score: 200 },
+]);
+console.log(userCollection.loadOne());
+console.log(userCollection.loadAll());
+console.log(userCollection.add({ name: "Jim", score: 300 }));
