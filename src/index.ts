@@ -1,44 +1,46 @@
-// arrays
+// functions
 
-let names: string[] = ['Mario', 'Luigi', 'Peach'];
-let ages: number[] = [20, 28, 24];
-
-names.push('Bowser');
-ages.push(35);
-
-console.log(names);
-console.log(ages);
-
-// type inference with arrays
-
-let fruits = ['apples', 'bananas', 'pears', 'mangoes'];
-
-fruits.push('peaches');
-
-const f = fruits[3];
-
-let things = [1, true, 'hello'];
-const t = things[0];
-
-// object literals
-
-let user: { firstName: string, age: number, id: number } = {
-    firstName: 'Mario',
-    age: 30,
-    id: 1
+function addTwoNumbers(a: number, b: number): number {
+    return a + b;
 }
 
-user.firstName = 'Peach';
-user.id = 2;
-
-// type inference with objects literals
-
-let person = {
-    name: 'Luigi',
-    score: 35
+const subtractTwoNumbers = (a: number, b: number): number => {
+    return a - b;
 }
 
-person.name = "Bowser";
-person.score = 40;
+addTwoNumbers(3, 9);
+subtractTwoNumbers(10, 2);
 
-const score = person.score;
+function addAllNumbers(items: number[]): void {
+    const total = items.reduce((a, c) => a + c, 0);
+    console.log(total);
+}
+
+addAllNumbers([1, 2, 3, 4, 5]);
+
+// return type inference
+
+function formatGreeting(name: string, greeting: string) {
+    return `${greeting}, ${name}`;
+}
+
+const result = formatGreeting('Mario', 'Hello');
+console.log(result);
+
+// optional parameters
+
+function addTwoOrOneNumbers(a: number, b?: number): number {
+    return b ? a + b : a;
+}
+
+console.log(addTwoOrOneNumbers(5, 10));
+console.log(addTwoOrOneNumbers(5));
+
+// default parameters
+
+function defaultGreeting(name: string, greeting: string = 'Hello') {
+    return `${greeting}, ${name}`;
+}
+
+console.log(defaultGreeting('Mario'));
+console.log(defaultGreeting('Mario', 'Hi'));
