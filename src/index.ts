@@ -1,46 +1,35 @@
-// functions
+// any type
 
-function addTwoNumbers(a: number, b: number): number {
-    return a + b;
+let age: any = 25;
+let title;
+
+age = 'Twenty five';
+
+console.log(age);
+
+title = 25;
+title = {
+    hello: 'world'
+};
+
+// any type in arrays
+
+let numbers: any[] = [true, 1, 2, 3, 4, 5, null, undefined];
+
+numbers.push('six');
+
+console.log(numbers);
+
+// functions & any
+
+function addTogether(value: any) {
+    return value + value;
 }
 
-const subtractTwoNumbers = (a: number, b: number): number => {
-    return a - b;
-}
+const result = addTogether(1.5);
 
-addTwoNumbers(3, 9);
-subtractTwoNumbers(10, 2);
+console.log(addTogether(10));
+console.log(addTogether('Hello'));
 
-function addAllNumbers(items: number[]): void {
-    const total = items.reduce((a, c) => a + c, 0);
-    console.log(total);
-}
-
-addAllNumbers([1, 2, 3, 4, 5]);
-
-// return type inference
-
-function formatGreeting(name: string, greeting: string) {
-    return `${greeting}, ${name}`;
-}
-
-const result = formatGreeting('Mario', 'Hello');
-console.log(result);
-
-// optional parameters
-
-function addTwoOrOneNumbers(a: number, b?: number): number {
-    return b ? a + b : a;
-}
-
-console.log(addTwoOrOneNumbers(5, 10));
-console.log(addTwoOrOneNumbers(5));
-
-// default parameters
-
-function defaultGreeting(name: string, greeting: string = 'Hello') {
-    return `${greeting}, ${name}`;
-}
-
-console.log(defaultGreeting('Mario'));
-console.log(defaultGreeting('Mario', 'Hi'));
+// useful when migrating from JS to TS
+// because using any won't cause errors initially
