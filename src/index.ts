@@ -2,14 +2,19 @@
 
 type Base = 'classic' | 'thin' | 'thick' | 'garlic'
 
-class Pizza {
-  constructor(private title: string, private price: number) {
-    // this.title = title;
-    // this.price = price;
+class MenuItem {
+  constructor(private title: string, private price: number) {}
+
+  get details(): string {
+    return `${this.title} costs $${this.price}`;
+  }
+}
+
+class Pizza extends MenuItem {
+  constructor(title: string, price: number) {
+    super(title, price);
   }
 
-  // private title: string
-  // private price: number
   private base: Base = 'classic'
   private toppings: string[] = []
 
@@ -25,15 +30,9 @@ class Pizza {
 }
 
 const pizzaOne: Pizza = new Pizza('mario special', 15);
-const pizzaTwo = new Pizza('luigi special', 10);
 
-function addMushroomsToPizzas(pizzas: Pizza[]): void {
-  pizzas.forEach(pizza => {
-    pizza.addTopping('mushrooms');
-  });
+function printMenuItem(item: MenuItem): void {
+  console.log(item.details);
 }
 
-addMushroomsToPizzas([pizzaOne, pizzaTwo]);
-
-console.log(pizzaOne, pizzaTwo);
-
+printMenuItem(pizzaOne);
