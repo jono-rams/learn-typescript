@@ -585,10 +585,31 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"8tyFx":[function(require,module,exports) {
 var _pizza = require("./models/Pizza");
+const rootElement = document.querySelector(".root");
+function createPizzaTemplate(pizza) {
+    return `
+    <div class="pizza">
+      <h2>${pizza.title}</h2>
+      <p class="toppings">${pizza.toppings.join(", ")}</p>
+      <p>${pizza.description}</p>
+      <span>${pizza.price}</span>
+    </div>
+  `;
+}
+function renderTemplates(templates, parent) {
+    const templateElement = document.createElement("template");
+    templates.forEach((t)=>{
+        templateElement.innerHTML += t;
+    });
+    parent.append(templateElement.content);
+}
 document.addEventListener("DOMContentLoaded", async ()=>{
     // load the pizza data
     const pizzas = await (0, _pizza.Pizza).loadAll();
-    console.log(pizzas);
+    // create template string for each pizza
+    const pizzaTemplates = pizzas.map(createPizzaTemplate);
+    // render pizza templates to the DOM
+    renderTemplates(pizzaTemplates, rootElement);
 });
 
 },{"./models/Pizza":"85kvU"}],"85kvU":[function(require,module,exports) {
