@@ -2,10 +2,14 @@
 // classes 101
 class Pizza {
     constructor(title, price) {
-        this.base = 'classic';
-        this.toppings = [];
         this.title = title;
         this.price = price;
+        // private title: string
+        // private price: number
+        this.base = 'classic';
+        this.toppings = [];
+        // this.title = title;
+        // this.price = price;
     }
     addTopping(topping) {
         this.toppings.push(topping);
@@ -23,4 +27,5 @@ pizza.addTopping('olives');
 // pizza.selectBase('crispy');
 pizza.selectBase('garlic');
 pizza.removeTopping('olives');
+// pizza.title = 'luigi special';
 console.log(pizza);
