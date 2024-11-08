@@ -1,21 +1,18 @@
-let age: number = 30;
-let firstName: string = 'John';
-let isFictional: boolean;
-
+"use strict";
+let age = 30;
+let firstName = 'John';
+let isFictional;
 age = 31;
 firstName = 'Mario';
 isFictional = true;
-
 let planet = 'Earth';
 let moons = 1;
 let isLarge = false;
-
 planet = 'Saturn';
 moons = 62;
 isLarge = true;
-
-let something: null;
-let nothing: undefined;
-
+let something;
+let nothing;
 something = null;
 nothing = undefined;
+console.log("hello, world!");
