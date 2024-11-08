@@ -1,23 +1,44 @@
-let age: number = 30;
-let firstName: string = 'John';
-let isFictional: boolean;
+// arrays
 
-age = 31;
-firstName = 'Mario';
-isFictional = true;
+let names: string[] = ['Mario', 'Luigi', 'Peach'];
+let ages: number[] = [20, 28, 24];
 
-let planet = 'Earth';
-let moons = 1;
-let isLarge = false;
+names.push('Bowser');
+ages.push(35);
 
-planet = 'Saturn';
-moons = 62;
-isLarge = true;
+console.log(names);
+console.log(ages);
 
-let something: null;
-let nothing: undefined;
+// type inference with arrays
 
-something = null;
-nothing = undefined;
+let fruits = ['apples', 'bananas', 'pears', 'mangoes'];
 
-console.log("hello, world!");
+fruits.push('peaches');
+
+const f = fruits[3];
+
+let things = [1, true, 'hello'];
+const t = things[0];
+
+// object literals
+
+let user: { firstName: string, age: number, id: number } = {
+    firstName: 'Mario',
+    age: 30,
+    id: 1
+}
+
+user.firstName = 'Peach';
+user.id = 2;
+
+// type inference with objects literals
+
+let person = {
+    name: 'Luigi',
+    score: 35
+}
+
+person.name = "Bowser";
+person.score = 40;
+
+const score = person.score;

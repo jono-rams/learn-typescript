@@ -1,18 +1,30 @@
 "use strict";
-let age = 30;
-let firstName = 'John';
-let isFictional;
-age = 31;
-firstName = 'Mario';
-isFictional = true;
-let planet = 'Earth';
-let moons = 1;
-let isLarge = false;
-planet = 'Saturn';
-moons = 62;
-isLarge = true;
-let something;
-let nothing;
-something = null;
-nothing = undefined;
-console.log("hello, world!");
+// arrays
+let names = ['Mario', 'Luigi', 'Peach'];
+let ages = [20, 28, 24];
+names.push('Bowser');
+ages.push(35);
+console.log(names);
+console.log(ages);
+// type inference with arrays
+let fruits = ['apples', 'bananas', 'pears', 'mangoes'];
+fruits.push('peaches');
+const f = fruits[3];
+let things = [1, true, 'hello'];
+const t = things[0];
+// object literals
+let user = {
+    firstName: 'Mario',
+    age: 30,
+    id: 1
+};
+user.firstName = 'Peach';
+user.id = 2;
+// type inference with objects literals
+let person = {
+    name: 'Luigi',
+    score: 35
+};
+person.name = "Bowser";
+person.score = 40;
+const score = person.score;
