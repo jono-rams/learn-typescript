@@ -1,11 +1,17 @@
 "use strict";
-// Intersection Type
-function addIdToValue(val) {
-    const id = Math.random();
-    return Object.assign(Object.assign({}, val), { id });
+// Generic Interfaces
+const collectionOne = {
+    data: ["a", "b", "c"],
+    name: "string collection",
+};
+const collectionTwo = {
+    data: [1, 2, 3],
+    name: "number collection",
+};
+function randomCollectionItem(c) {
+    const randomIndex = Math.floor(Math.random() * c.data.length);
+    return c.data[randomIndex];
 }
-const post = addIdToValue({
-    title: "Marmite sucks",
-    thumbsUp: 250,
-});
-console.log(post.id, post.title, post.thumbsUp);
+const resultOne = randomCollectionItem(collectionOne);
+const resultTwo = randomCollectionItem(collectionTwo);
+console.log(resultOne, resultTwo);
